@@ -1,5 +1,3 @@
-import com.codeborne.selenide.Selectors;
-import data.Check;
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
