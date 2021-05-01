@@ -1,9 +1,14 @@
+import com.codeborne.selenide.Selectors;
+import data.Check;
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.text;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 import static data.DataGenerator.Registration.getRegisteredUser;
 import static data.DataGenerator.Registration.getUser;
@@ -26,8 +31,10 @@ public class AuthTest {
         $("[data-test-id='login'] input").setValue(registeredUser.getLogin());
         $("[data-test-id='password'] input").setValue(registeredUser.getPassword());
         $$("button").find(exactText("Продолжить")).click();
-        $("h2").shouldHave(text("Личный кабинет"));
+        $(withText("Личный кабинет")).shouldBe(visible, Duration.ofSeconds(5));
     }
+
+
 
     @Test
     @DisplayName("Should get error message if login with not registered user")
